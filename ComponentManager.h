@@ -6,7 +6,6 @@
 #include "ErrorHandler.h"
 #endif
 
-#pragma region wtf
 #include <type_traits>
 
 // Primary template with a static assertion
@@ -69,8 +68,6 @@ public:
 	static constexpr bool value = type::value;
 };
 
-#pragma endregion
-
 namespace ECS
 {
 	class Entity;
@@ -125,7 +122,7 @@ namespace ECS
 #ifdef _DEBUG
 		if (aEntity->GetComponent<ComponentT>() != nullptr)
 		{
-			ErrorSystem::ErrorHandler::GetInstance()->ThrowErrorException("ERROR: Dont try and add the same component twice...");
+			ErrorSystem::ErrorHandler::GetInstance()->ThrowErrorException("ERROR: Dont try and add the same component twice");
 		}
 #endif
 		ComponentT* const component = myComponents.Create();
@@ -142,7 +139,7 @@ namespace ECS
 #ifdef _DEBUG
 		if (nullptr == comp) // the yoda condition
 		{
-			ErrorSystem::ErrorHandler::GetInstance()->ThrowErrorException("ERROR: Dont try and remove a component that was never added to the entity ;(");
+			ErrorSystem::ErrorHandler::GetInstance()->ThrowErrorException("ERROR: Dont try and remove a component that was never added to the entity");
 		}
 #endif //_DEBUG
 
